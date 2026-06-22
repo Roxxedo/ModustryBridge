@@ -1,0 +1,10 @@
+{
+  "displayName": "Modustry Bridge",
+  "name": "modustry-bridge",
+  "author": "Pedro Ambrosini <pedroalabousas@gmail.com>",
+  "main": "br.com.roxcom.modustrybridge.ModustryBridge",
+  "description": "A Mindustry integration with Modustry",
+  "version": "0.1",
+  "minGameVersion": 154,
+  "java": true
+}
