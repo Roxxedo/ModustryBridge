@@ -5,6 +5,9 @@ import arc.util.Log;
 import arc.util.Time;
 import br.com.roxcom.modustrybridge.dialogs.ServerErrorDialog;
 import br.com.roxcom.modustrybridge.handlers.HealthHandler;
+import br.com.roxcom.modustrybridge.handlers.PairConfirmHandler;
+import br.com.roxcom.modustrybridge.handlers.PairRequestHandler;
+import br.com.roxcom.modustrybridge.services.PairingService;
 import com.sun.net.httpserver.HttpServer;
 import mindustry.game.EventType;
 import mindustry.mod.Mod;
@@ -13,6 +16,8 @@ import java.io.IOException;
 import java.net.InetSocketAddress;
 
 public class ModustryBridge extends Mod {
+    public static PairingService pairing = new PairingService();
+
     private HttpServer server;
 
     public ModustryBridge() {
@@ -30,5 +35,7 @@ public class ModustryBridge extends Mod {
         if (server == null) return;
 
         server.createContext("/health", new HealthHandler());
+        server.createContext("/pair/request", new PairRequestHandler());
+        server.createContext("/pair/confirm", new PairConfirmHandler());
     }
 }
