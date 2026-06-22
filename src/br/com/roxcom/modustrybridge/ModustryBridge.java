@@ -3,6 +3,7 @@ package br.com.roxcom.modustrybridge;
 import arc.Events;
 import arc.util.Log;
 import arc.util.Time;
+import br.com.roxcom.modustrybridge.handlers.HealthHandler;
 import com.sun.net.httpserver.HttpServer;
 import mindustry.game.EventType;
 import mindustry.mod.Mod;
@@ -31,5 +32,9 @@ public class ModustryBridge extends Mod {
                 });
             });
         }
+
+        if (server == null) return;
+
+        server.createContext("/health", new HealthHandler());
     }
 }
