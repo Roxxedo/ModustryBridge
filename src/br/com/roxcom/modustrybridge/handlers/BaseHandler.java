@@ -70,4 +70,15 @@ abstract public class BaseHandler implements HttpHandler {
 
         this.body = Jval.read(body);
     }
+
+    protected void sendJson(String response, HttpExchange exchange) throws IOException {
+        exchange.getResponseHeaders()
+                .add("Content-Type", "application/json");
+
+        exchange.sendResponseHeaders(200, response.length());
+
+        try (OutputStream os = exchange.getResponseBody()) {
+            os.write(response.getBytes());
+        }
+    }
 }

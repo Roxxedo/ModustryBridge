@@ -4,9 +4,7 @@ import arc.Events;
 import arc.util.Log;
 import arc.util.Time;
 import br.com.roxcom.modustrybridge.dialogs.ServerErrorDialog;
-import br.com.roxcom.modustrybridge.handlers.HealthHandler;
-import br.com.roxcom.modustrybridge.handlers.PairConfirmHandler;
-import br.com.roxcom.modustrybridge.handlers.PairRequestHandler;
+import br.com.roxcom.modustrybridge.handlers.*;
 import br.com.roxcom.modustrybridge.services.PairingService;
 import com.sun.net.httpserver.HttpServer;
 import mindustry.game.EventType;
@@ -37,5 +35,7 @@ public class ModustryBridge extends Mod {
         server.createContext("/health", new HealthHandler());
         server.createContext("/pair/request", new PairRequestHandler());
         server.createContext("/pair/confirm", new PairConfirmHandler());
+        server.createContext("/mods/install", new InstallModHandler());
+        server.createContext("/mods/installed", new InstalledModsHandler());
     }
 }
