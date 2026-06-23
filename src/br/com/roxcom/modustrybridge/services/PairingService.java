@@ -45,6 +45,10 @@ public class PairingService {
         return this.pairCode;
     }
 
+    public boolean verify(String pairCode) {
+        return pairCode.equals(this.pairCode);
+    }
+
     public boolean isPaired() {
         return this.paired;
     }
