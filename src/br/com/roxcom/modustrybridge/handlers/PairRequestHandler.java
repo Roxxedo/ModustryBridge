@@ -9,9 +9,16 @@ import com.sun.net.httpserver.HttpHandler;
 import java.io.IOException;
 import java.io.OutputStream;
 
-public class PairRequestHandler implements HttpHandler {
+public class PairRequestHandler extends BaseHandler {
     @Override
     public void handle(HttpExchange exchange) throws IOException {
+        addCorsHeaders(exchange);
+
+        if (exchange.getRequestMethod().equals("OPTIONS")) {
+            exchange.sendResponseHeaders(204, -1);
+            return;
+        }
+
         String pairCode = ModustryBridge.pairing.pair();
 
         new RequestPairingDialog(pairCode);

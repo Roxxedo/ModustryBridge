@@ -6,9 +6,16 @@ import com.sun.net.httpserver.HttpHandler;
 import java.io.IOException;
 import java.io.OutputStream;
 
-public class HealthHandler implements HttpHandler {
+public class HealthHandler extends BaseHandler {
     @Override
     public void handle(HttpExchange exchange) throws IOException {
+        addCorsHeaders(exchange);
+
+        if (exchange.getRequestMethod().equals("OPTIONS")) {
+            exchange.sendResponseHeaders(204, -1);
+            return;
+        }
+
         String response = "{\"status\":\"ok\"}";
 
         exchange.getResponseHeaders()
