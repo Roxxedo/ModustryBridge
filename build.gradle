@@ -30,7 +30,7 @@ repositories{
 }
 
 java{
-    targetCompatibility = 8
+    targetCompatibility = 11
     sourceCompatibility = JavaVersion.VERSION_17
 }
 
@@ -88,6 +88,7 @@ jar{
 
     from(projectDir){
         include "mod.json"
+        include "icon.png"
     }
 
     from("assets/"){

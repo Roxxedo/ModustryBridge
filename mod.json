@@ -1,9 +1,9 @@
 {
   "displayName": "Modustry Bridge",
   "name": "modustry-bridge",
-  "author": "Pedro Ambrosini <pedroalabousas@gmail.com>",
+  "author": "Roxxedo",
   "main": "br.com.roxcom.modustrybridge.ModustryBridge",
-  "description": "A Mindustry integration with Modustry",
+  "description": "Install mods from Modustry Website",
   "version": "0.1",
   "minGameVersion": 154,
   "java": true
