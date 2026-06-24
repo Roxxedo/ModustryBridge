@@ -1,6 +1,6 @@
 {
   "displayName": "Modustry Bridge",
-  "name": "modustry-bridge",
+  "name": "modustrybridge",
   "author": "Roxxedo",
   "main": "br.com.roxcom.modustrybridge.ModustryBridge",
   "description": "Install mods from Modustry Website",
