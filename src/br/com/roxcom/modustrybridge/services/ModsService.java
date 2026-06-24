@@ -8,6 +8,7 @@ import arc.util.Log;
 import arc.util.Nullable;
 import arc.util.io.Streams;
 import arc.util.serialization.Json;
+import arc.util.serialization.JsonWriter;
 import arc.util.serialization.Jval;
 import mindustry.Vars;
 import mindustry.mod.Mods;
@@ -16,12 +17,11 @@ import static mindustry.Vars.mods;
 import static mindustry.Vars.tmpDirectory;
 
 public class ModsService {
-    private String api = "https://modustry.com.br/api/v1";
+    private final String api = "https://modustry.com.br/api/v1";
     private static final Json json = new Json();
 
-    private boolean success = false;
-
     public static String installedModsJson() {
+        json.setOutputType(JsonWriter.OutputType.json);
         Seq<Object> result = new Seq<>();
 
         for (Mods.LoadedMod mod : Vars.mods.list()) {
@@ -35,7 +35,7 @@ public class ModsService {
             info.description = meta.description;
             info.version = meta.version;
             info.minGameVersion = meta.minGameVersion;
-            info.repo = meta.repo;
+            info.repo = mod.getRepo();
 
             info.enabled = mod.enabled();
             info.state = mod.state == null ? null : mod.state.name();

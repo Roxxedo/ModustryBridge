@@ -10,7 +10,6 @@ public class InstalledModsHandler extends BaseHandler {
     public void handle(HttpExchange exchange) throws IOException {
         addCorsHeaders(exchange);
         allowMethod("GET", exchange);
-        authentication(exchange);
 
         String jsonString = ModsService.installedModsJson();
 
