@@ -10,8 +10,11 @@ import arc.util.io.Streams;
 import arc.util.serialization.Json;
 import arc.util.serialization.JsonWriter;
 import arc.util.serialization.Jval;
+import br.com.roxcom.modustrybridge.dialogs.ModInstallErrorDialog;
+import br.com.roxcom.modustrybridge.dialogs.ModInstalledDialog;
 import mindustry.Vars;
 import mindustry.mod.Mods;
+import mindustry.ui.dialogs.BaseDialog;
 
 import static mindustry.Vars.mods;
 import static mindustry.Vars.tmpDirectory;
@@ -64,6 +67,9 @@ public class ModsService {
             success[0] = isJava
                     ? importJavaMod(id, version)
                     : importBranchMod(id);
+
+            if (success[0]) new ModInstalledDialog(json.getString("name"));
+            if (!success[0]) new ModInstallErrorDialog(json.getString("name"));
         });
 
         return success[0];
@@ -88,7 +94,6 @@ public class ModsService {
             Log.info("[Modustry Bridge] " + repo + " installed.");
             return true;
         } catch (Throwable e) {
-            Log.info(e);
             Log.info("[Modustry Bridge] " + repo + " failed to install.");
             return false;
         }
