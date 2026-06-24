@@ -12,6 +12,7 @@ public class PairRequestHandler extends BaseHandler {
         addCorsHeaders(exchange);
         allowMethod("GET", exchange);
 
+        ModustryBridge.pairing.unpair();
         String pairCode = ModustryBridge.pairing.pair();
 
         new RequestPairingDialog(pairCode);

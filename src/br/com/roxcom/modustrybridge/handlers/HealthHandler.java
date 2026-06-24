@@ -1,5 +1,6 @@
 package br.com.roxcom.modustrybridge.handlers;
 
+import br.com.roxcom.modustrybridge.ModustryBridge;
 import com.sun.net.httpserver.HttpExchange;
 
 import java.io.IOException;
@@ -14,7 +15,9 @@ public class HealthHandler extends BaseHandler {
             return;
         }
 
-        String response = "{\"status\":\"ok\"}";
+        String status = ModustryBridge.pairing.isPaired() ? "paired" : "running";
+
+        String response = "{ \"status\": \"" + status + "\" }";
 
         sendJson(response, exchange);
     }

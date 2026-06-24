@@ -18,6 +18,13 @@ public class PairingService {
         return pairCode;
     }
 
+    public void unpair() {
+        this.pairCode = null;
+        this.websiteConfirmed = false;
+        this.bridgeConfirmed = false;
+        this.paired = false;
+    }
+
     public void bridgeConfirm(String pairCode) {
         if (Objects.equals(pairCode, this.pairCode)) {
             this.bridgeConfirmed = true;
@@ -32,6 +39,7 @@ public class PairingService {
             this.websiteConfirmed = true;
             this.checkPaired();
         } else {
+            this.unpair();
             new WrongPairCodeHandler();
         }
     }

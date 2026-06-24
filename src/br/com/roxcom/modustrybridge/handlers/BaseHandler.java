@@ -16,7 +16,7 @@ abstract public class BaseHandler implements HttpHandler {
     protected void addCorsHeaders(HttpExchange exchange) throws IOException {
         Headers headers = exchange.getResponseHeaders();
 
-        headers.add("Access-Control-Allow-Origin", "https://modustry.com");
+        headers.add("Access-Control-Allow-Origin", "https://modustry.com.br");
         headers.add("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
         headers.add("Access-Control-Allow-Headers", "Content-Type, X-Modustry-Pair-Code");
 
@@ -47,6 +47,8 @@ abstract public class BaseHandler implements HttpHandler {
     protected void authentication(HttpExchange exchange) throws IOException {
         String pairCode = exchange.getRequestHeaders().getFirst("X-Modustry-Pair-Code");
         if (!ModustryBridge.pairing.verify(pairCode)) {
+            ModustryBridge.pairing.unpair();
+
             byte[] error = "{\"error\": \"Unauthorized\"}".getBytes(StandardCharsets.UTF_8);
 
             exchange.getResponseHeaders()
